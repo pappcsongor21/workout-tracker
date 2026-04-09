@@ -1,0 +1,32 @@
+## [ Standard .NET 10 / Visual Studio ]
+# A lefordított binárisok és köztes fájlok
+bin/
+obj/
+[Rr]elease/
+[Dd]ebug/
+
+# Visual Studio specifikus fájlok
+.vs/
+.vscode/
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+## [ Entity Framework Core & SQL ]
+# Migrációk kellenek a Gitbe, de a konkrét DB fájlok nem
+*.mdf
+*.ldf
+*.db
+*.sqlite
+
+## [ Projekt-specifikus kimenetek ]
+# A feladat szerint riportokat kell generálnod mappákba [cite: 88-89]
+# Ezeket NE commitold, mert minden futtatáskor változnak
+Reports/
+**/Reports/
+*daily_report_*.txt
+
+## [ Operációs rendszer szemetelése ]
+.DS_Store
+Thumbs.db
