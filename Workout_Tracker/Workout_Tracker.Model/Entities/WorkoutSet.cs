@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Workout_Tracker.Model.Entities
 {
-    public class LoggedSet
+    public class WorkoutSet
     {
         public int Id { get; set; }
         public int ExerciseId { get; set; }

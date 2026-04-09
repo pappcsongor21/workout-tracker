@@ -10,7 +10,7 @@ namespace Workout_Tracker.Model.Entities
     {
         public int Id { get; set; }
         public DateTime Date { get; set; } = DateTime.Now;
-        public ICollection<LoggedSet> Sets { get; set; } = new List<LoggedSet>();
+        public ICollection<WorkoutSet> Sets { get; set; } = new List<WorkoutSet>();
         public string Notes {  get; set; } = string.Empty;
     }
 }
