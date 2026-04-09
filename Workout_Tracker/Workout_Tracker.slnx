@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/Api/">
+    <Project Path="Workout_Tracker.Api/Workout_Tracker.Api.csproj" />
+  </Folder>
+  <Folder Name="/Application/">
+    <Project Path="Workout_Tracker.Application/Workout_Tracker.Application.csproj" />
+  </Folder>
+  <Folder Name="/Domain/">
+    <Project Path="Workout_Tracker.Model/Workout_Tracker.Model.csproj" />
+  </Folder>
+  <Folder Name="/Infrastructure/">
+    <Project Path="Workout_Tracker.Persistence/Workout_Tracker.Persistence.csproj" />
+  </Folder>
+  <Folder Name="/Test/">
+    <Project Path="Workout_Tracker.Test/Workout_Tracker.Tests.csproj" />
+  </Folder>
+</Solution>
