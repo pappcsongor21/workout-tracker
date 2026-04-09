@@ -14,6 +14,7 @@ namespace Workout_Tracker.Persistence
         public DbSet<TemplateExercise> TemplateExercises { get; set; }
         public DbSet<WorkoutTemplate> WorkoutTemplates { get; set; }
         public DbSet<LoggedSet> LoggedSets { get; set; }
+        public DbSet<Workout> Workouts { get; set; }
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
