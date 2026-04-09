@@ -11,10 +11,10 @@ namespace Workout_Tracker.Model.Entities
         public int Id { get; set; }
 
         public int ExerciseId { get; set;  }
-        public Exercise Exercise { get; set; }
+        public Exercise Exercise { get; set; } = null!;
 
         public int WorkoutTemplateId { get; set; }
-        public WorkoutTemplate WorkoutTemplate { get; set; }
+        public WorkoutTemplate WorkoutTemplate { get; set; } = null!;
 
         public int OrderNum { get; set; }
         public int TargetSets { get; set; }
