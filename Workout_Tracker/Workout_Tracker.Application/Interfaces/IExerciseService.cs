@@ -10,7 +10,7 @@ namespace Workout_Tracker.Application.Interfaces
 {
     public interface IExerciseService
     {
-        Task<List<ExerciseResponse>> GetAllExercisesAsync();
+        Task<IEnumerable<ExerciseResponse>> GetAllExercisesAsync();
         Task<ExerciseResponse> GetExerciseByIdAsync(int id);
         Task<ExerciseResponse> CreateExerciseAsync(CreateExerciseRequest exerciseDto);
         Task UpdateExerciseAsync(UpdateExerciseRequest exerciseDto);
