@@ -20,21 +20,21 @@ namespace Workout_Tracker.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ExerciseResponse>>> GetExercisesAsync()
         {
-            var exercises = await _service.GetAllExercises();
+            var exercises = await _service.GetAllExercisesAsync();
             return Ok(exercises);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetExerciseByIdAsync(int id)
         {
-            var exercise = await _service.GetExerciseById(id);
+            var exercise = await _service.GetExerciseByIdAsync(id);
             return Ok(exercise);
         }
 
         [HttpPost]
         public async Task<ActionResult<ExerciseResponse>> CreateExerciseAsync(CreateExerciseRequest exercise)
         {
-            var createdExercise = await _service.CreateExercise(exercise);
+            var createdExercise = await _service.CreateExerciseAsync(exercise);
 
             return CreatedAtAction(
                 nameof(GetExerciseByIdAsync), 
@@ -46,14 +46,14 @@ namespace Workout_Tracker.Api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateExerciseAsync(int id, UpdateExerciseRequest exerciseDto)
         {
-            await _service.UpdateExercise(exerciseDto);
+            await _service.UpdateExerciseAsync(exerciseDto);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteExerciseAsync(int id)
         {
-            await _service.DeleteExercise(id);
+            await _service.DeleteExerciseAsync(id);
             return NoContent();
         }
     }
