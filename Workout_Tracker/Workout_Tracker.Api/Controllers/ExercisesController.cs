@@ -24,7 +24,7 @@ namespace Workout_Tracker.Api.Controllers
             return Ok(exercises);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetExerciseById")]
         public async Task<IActionResult> GetExerciseByIdAsync(int id)
         {
             var exercise = await _service.GetExerciseByIdAsync(id);
@@ -32,12 +32,12 @@ namespace Workout_Tracker.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ExerciseResponse>> CreateExerciseAsync(CreateExerciseRequest exercise)
+        public async Task<ActionResult<ExerciseResponse>> CreateExerciseAsync([FromBody] CreateExerciseRequest exercise)
         {
             var createdExercise = await _service.CreateExerciseAsync(exercise);
 
-            return CreatedAtAction(
-                nameof(GetExerciseByIdAsync), 
+            return CreatedAtRoute(
+                "GetExerciseById", 
                 new {id = createdExercise.Id}, 
                 createdExercise);
             //here nameof(method) results in a location(url with an id) at the end
