@@ -5,88 +5,87 @@ using Workout_Tracker.Application.Interfaces;
 using Workout_Tracker.Model.Entities;
 using Workout_Tracker.Persistence;
 
-namespace Workout_Tracker.Application.Services
+namespace Workout_Tracker.Application.Services;
+
+public class ExerciseService : IExerciseService
 {
-    public class ExerciseService : IExerciseService
+    private readonly AppDbContext _context;
+
+    public ExerciseService(AppDbContext context)
     {
-        private readonly AppDbContext _context;
+        _context = context;
+    }
 
-        public ExerciseService(AppDbContext context)
+    public async Task<IEnumerable<ExerciseResponse>> GetAllExercisesAsync()
+    {
+        var exercises = await _context.Exercises.ToListAsync();
+        var exerciseDtos = exercises.Select(e => new ExerciseResponse
         {
-            _context = context;
-        }
+            Id = e.Id,
+            Name = e.Name,
+            MuscleGroup = e.MuscleGroup,
+            Description = e.Description
+        }).ToList();
 
-        public async Task<IEnumerable<ExerciseResponse>> GetAllExercisesAsync()
+        return exerciseDtos;
+    }
+
+    public async Task<ExerciseResponse> GetExerciseByIdAsync(int id)
+    {
+        var exercise = await _context.Exercises.FirstOrDefaultAsync(e => e.Id == id);
+
+        if (exercise == null) throw new NotFoundException(nameof(Exercise), id);
+
+
+        return new ExerciseResponse
         {
-            var exercises = await _context.Exercises.ToListAsync();
-            var exerciseDtos = exercises.Select(e => new ExerciseResponse
-            {
-                Id = e.Id,
-                Name = e.Name,
-                MuscleGroup = e.MuscleGroup,
-                Description = e.Description
-            }).ToList();
+            Id = exercise.Id,
+            Name = exercise.Name,
+            MuscleGroup = exercise.MuscleGroup,
+            Description = exercise.Description
+        };
+    }
 
-            return exerciseDtos;
-        }
-
-        public async Task<ExerciseResponse> GetExerciseByIdAsync(int id)
+    public async Task<ExerciseResponse> CreateExerciseAsync(CreateExerciseRequest exerciseDto)
+    {
+        var newExercise = new Exercise
         {
-            var exercise = await _context.Exercises.FirstOrDefaultAsync(e => e.Id == id);
+            Name = exerciseDto.Name,
+            MuscleGroup = exerciseDto.MuscleGroup,
+            Description = exerciseDto.Description
+        };
+        await _context.AddAsync(newExercise);
+        await _context.SaveChangesAsync();
 
-            if (exercise == null) throw new NotFoundException(nameof(Exercise), id);
-
-
-            return new ExerciseResponse
-            {
-                Id = exercise.Id,
-                Name = exercise.Name,
-                MuscleGroup = exercise.MuscleGroup,
-                Description = exercise.Description
-            };
-        }
-
-        public async Task<ExerciseResponse> CreateExerciseAsync(CreateExerciseRequest exerciseDto)
+        return new ExerciseResponse
         {
-            var newExercise = new Exercise
-            {
-                Name = exerciseDto.Name,
-                MuscleGroup = exerciseDto.MuscleGroup,
-                Description = exerciseDto.Description
-            };
-            await _context.AddAsync(newExercise);
-            await _context.SaveChangesAsync();
+            Id = newExercise.Id,
+            Name = newExercise.Name,
+            MuscleGroup = newExercise.MuscleGroup,
+            Description = newExercise.Description
+        };
+    }
 
-            return new ExerciseResponse
-            {
-                Id = newExercise.Id,
-                Name = newExercise.Name,
-                MuscleGroup = newExercise.MuscleGroup,
-                Description = newExercise.Description
-            };
-        }
+    public async Task UpdateExerciseAsync(UpdateExerciseRequest exerciseDto)
+    {
+        var exercise = await _context.Exercises.FirstOrDefaultAsync(e => e.Id == exerciseDto.Id);
 
-        public async Task UpdateExerciseAsync(UpdateExerciseRequest exerciseDto)
-        {
-            var exercise = await _context.Exercises.FirstOrDefaultAsync(e => e.Id == exerciseDto.Id);
+        if (exercise == null) throw new NotFoundException(nameof(Exercise), exerciseDto.Id);
 
-            if (exercise == null) throw new NotFoundException(nameof(Exercise), exerciseDto.Id);
+        exercise.Name = exerciseDto.Name;
+        exercise.MuscleGroup = exerciseDto.MuscleGroup;
+        exercise.Description = exerciseDto.Description;
 
-            exercise.Name = exerciseDto.Name;
-            exercise.MuscleGroup = exerciseDto.MuscleGroup;
-            exercise.Description = exerciseDto.Description;
+        await _context.SaveChangesAsync();
+    }
 
-            await _context.SaveChangesAsync();
-        }
+    public async Task DeleteExerciseAsync(int id)
+    {
+        var exercise = await _context.Exercises.FirstOrDefaultAsync(e => e.Id == id);
 
-        public async Task DeleteExerciseAsync(int id)
-        {
-            var exercise = await _context.Exercises.FirstOrDefaultAsync(e => e.Id == id);
+        if (exercise == null) throw new NotFoundException(nameof(Exercise), id);
 
-            if (exercise == null) throw new NotFoundException(nameof(Exercise), id);
-
-            _context.Exercises.Remove(exercise);
-            await _context.SaveChangesAsync();
-        }
+        _context.Exercises.Remove(exercise);
+        await _context.SaveChangesAsync();
     }
 }
