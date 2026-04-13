@@ -19,6 +19,8 @@ obj/
 *.ldf
 *.db
 *.sqlite
+*.db-wal
+*.db-shm
 
 ## [ Projekt-specifikus kimenetek ]
 # A feladat szerint riportokat kell generálnod mappákba [cite: 88-89]
