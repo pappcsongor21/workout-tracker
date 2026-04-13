@@ -25,7 +25,7 @@ namespace Workout_Tracker.Api.Controllers
         }
 
         [HttpGet("{id}", Name = "GetExerciseById")]
-        public async Task<IActionResult> GetExerciseByIdAsync(int id)
+        public async Task<ActionResult<ExerciseResponse>> GetExerciseByIdAsync(int id)
         {
             var exercise = await _service.GetExerciseByIdAsync(id);
             return Ok(exercise);
