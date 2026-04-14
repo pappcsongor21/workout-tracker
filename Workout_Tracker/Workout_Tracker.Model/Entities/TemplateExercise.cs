@@ -20,4 +20,6 @@ public class TemplateExercise
     public int TargetSets { get; set; }
     public int TargetRepsMin { get; set; }
     public int TargetRepsMax { get; set; }
+    public string TargetIntensity { get; set; } = string.Empty;
+    public int RestTime { get; set; }
 }
