@@ -10,7 +10,7 @@ public class WorkoutTemplate
 {
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
-    public string ColorHex { get; set; } = "#FFFFFF";
+    public string ColorHex { get; set; } = "#808080";
 
     public ICollection<TemplateExercise> Exercises { get; set; } = new HashSet<TemplateExercise>();
 }
