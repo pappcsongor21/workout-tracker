@@ -40,7 +40,6 @@ public class ExercisesController : ControllerBase
             "GetExerciseById", 
             new {id = createdExercise.Id}, 
             createdExercise);
-        //here nameof(method) results in a location(url with an id) at the end
     }
 
     [HttpPut("{id}")]
