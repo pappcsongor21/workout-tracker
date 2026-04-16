@@ -11,8 +11,4 @@
 		<ProjectReference Include="..\Workout_Tracker.Persistence\Workout_Tracker.Persistence.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="DTOs\" />
-	</ItemGroup>
-
 </Project>
