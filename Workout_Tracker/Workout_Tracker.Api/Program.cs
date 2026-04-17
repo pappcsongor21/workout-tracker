@@ -9,6 +9,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=workout.db"));
 
 builder.Services.AddScoped<IExerciseService, ExerciseService>();
+builder.Services.AddScoped<IWorkoutTemplateService, WorkoutTemplateService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
