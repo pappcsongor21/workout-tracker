@@ -3,6 +3,7 @@ using Workout_Tracker.Application.DTOs.Exercise;
 using Workout_Tracker.Application.DTOs.TemplateExercise;
 using Workout_Tracker.Application.DTOs.WorkoutTemplate;
 using Workout_Tracker.Application.Interfaces;
+using Workout_Tracker.Model.Entities;
 using Workout_Tracker.Persistence;
 
 namespace Workout_Tracker.Application.Services;
@@ -53,7 +54,44 @@ public class WorkoutTemplateService : IWorkoutTemplateService
 
     public async Task<WorkoutTemplateCreatedResponse> CreateWorkoutTemplateAsync(CreateWorkoutTemplateRequest request)
     {
-        throw new NotImplementedException();
+        var template = new WorkoutTemplate
+        {
+            Name = request.Name,
+            ColorHex = request.ColorHex,
+            Exercises = request.Exercises.Select(e => new TemplateExercise
+            {
+                ExerciseId = e.ExerciseId,
+                OrderNum = e.OrderNum,
+                TargetSets = e.TargetSets,
+                TargetRepsMin = e.TargetRepsMin,
+                TargetRepsMax = e.TargetRepsMax,
+                TargetIntensity = e.TargetIntensity,
+                RestSeconds = e.RestSeconds
+            }).ToList()
+        };
+
+        await _context.AddAsync(template);
+        await _context.SaveChangesAsync();
+
+        var responseDto = new WorkoutTemplateCreatedResponse
+        {
+            Id = template.Id,
+            Name = template.Name,
+            ColorHex = template.ColorHex,
+            Exercises = template.Exercises.Select(e => new TemplateExerciseCreatedResponse
+            {
+                Id = e.Id,
+                ExerciseId = e.ExerciseId,
+                OrderNum = e.OrderNum,
+                TargetSets = e.TargetSets,
+                TargetRepsMin = e.TargetRepsMin,
+                TargetRepsMax = e.TargetRepsMax,
+                TargetIntensity = e.TargetIntensity,
+                RestSeconds = e.RestSeconds
+            }).ToList()
+        };
+
+        return responseDto;    
     }
 
     public Task DeleteWorkoutTemplateAsync(int id)
