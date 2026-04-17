@@ -1,0 +1,68 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Workout_Tracker.Application.DTOs.Exercise;
+using Workout_Tracker.Application.DTOs.TemplateExercise;
+using Workout_Tracker.Application.DTOs.WorkoutTemplate;
+using Workout_Tracker.Application.Interfaces;
+using Workout_Tracker.Persistence;
+
+namespace Workout_Tracker.Application.Services;
+
+public class WorkoutTemplateService : IWorkoutTemplateService
+{
+    private readonly AppDbContext _context;
+
+    public WorkoutTemplateService(AppDbContext context)
+    {
+        _context = context;
+    }
+    public async Task<IEnumerable<WorkoutTemplateResponse>> GetWorkoutTemplatesAsync()
+    {
+        var responseDtos = await _context.WorkoutTemplates
+            .Select(w => new WorkoutTemplateResponse
+            {
+                Id = w.Id,
+                ColorHex = w.ColorHex,
+                Name = w.Name,
+                Exercises = w.Exercises.Select(e => new TemplateExerciseResponse
+                {
+                    Id = e.Id,
+                    OrderNum = e.OrderNum,
+                    TargetSets = e.TargetSets,
+                    TargetRepsMin = e.TargetRepsMin,
+                    TargetRepsMax = e.TargetRepsMax,
+                    TargetIntensity = e.TargetIntensity,
+
+                    Exercise = new ExerciseResponse
+                    {
+                        Id = e.Exercise.Id,
+                        Name = e.Exercise.Name,
+                        MuscleGroup = e.Exercise.MuscleGroup,
+                        Description = e.Exercise.Description
+                    }
+                }).ToList() 
+            })
+        .ToListAsync(); 
+
+        return responseDtos;
+    }
+
+    public Task<WorkoutTemplateResponse> GetWorkoutTemplateByIdAsync(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<WorkoutTemplateResponse> CreateWorkoutTemplateAsync(CreateWorkoutTemplateRequest workoutTemplateDto)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task DeleteWorkoutTemplateAsync(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task UpdateWorkoutTemplateAsync(UpdateWorkoutTemplateRequest workoutTemplateDto)
+    {
+        throw new NotImplementedException();
+    }
+}
