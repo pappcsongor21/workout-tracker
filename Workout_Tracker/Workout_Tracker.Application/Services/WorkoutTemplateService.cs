@@ -51,7 +51,7 @@ public class WorkoutTemplateService : IWorkoutTemplateService
         throw new NotImplementedException();
     }
 
-    public Task<WorkoutTemplateResponse> CreateWorkoutTemplateAsync(CreateWorkoutTemplateRequest workoutTemplateDto)
+    public async Task<WorkoutTemplateCreatedResponse> CreateWorkoutTemplateAsync(CreateWorkoutTemplateRequest request)
     {
         throw new NotImplementedException();
     }
