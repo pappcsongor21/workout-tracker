@@ -23,7 +23,7 @@ public class WorkoutTemplatesController : ControllerBase
         return Ok(workoutTemplates);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id}", Name = "GetWorkoutTemplateById")]
     public async Task<ActionResult<WorkoutTemplateResponse>> GetWorkoutTemplateByIdAsync(int id)
     {
         var workoutTemplate = await _service.GetWorkoutTemplateByIdAsync(id);
