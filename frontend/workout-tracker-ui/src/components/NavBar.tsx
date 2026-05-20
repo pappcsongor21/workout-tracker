@@ -15,6 +15,15 @@ const NavBar = () => {
             Workout Tracker
           </Link>
         </div>
+
+        <div className="flex gap-4">
+          <Link
+            to="/workout/start"
+            className={`px-4 py-2 rounded-lg text-lg font-bold transition duration-100 hover:bg-lime-300 hover:text-black`}
+          >
+            Start workout
+          </Link>
+        </div>
       </nav>
   )
 }
