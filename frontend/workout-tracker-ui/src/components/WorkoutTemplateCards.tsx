@@ -32,7 +32,7 @@ const WorkoutTemplateCards = () => {
     }
 
     return (
-        <div className="p-3 flex flex-wrap gap-6 justify-center">
+        <div className="p-3 flex flex-wrap gap-2 justify-center">
         {workoutTemplates?.map((workoutTemplate) => (
             <WorkoutTemplateCard 
             key={workoutTemplate.id}
