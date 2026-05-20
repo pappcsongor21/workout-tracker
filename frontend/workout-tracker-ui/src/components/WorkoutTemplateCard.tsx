@@ -6,7 +6,9 @@ const WorkoutTemplateCard = ({workoutTemplate}:WorkoutTemplateCardProps) => {
     <section className="py-4">
         <div className="w-full max-w-125 bg-white rounded-xl overflow-hidden shadow-lg">
         
-        <div className={`bg-purple-300 text-center text-3xl font-bold py-3 tracking-wide`}>
+        <div
+        style={{backgroundColor: workoutTemplate.colorHex}} 
+        className={`text-center text-3xl font-bold py-3 tracking-wide`}>
             {workoutTemplate.name}
         </div>
         
