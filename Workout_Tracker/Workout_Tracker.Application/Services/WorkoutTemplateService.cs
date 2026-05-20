@@ -33,7 +33,7 @@ public class WorkoutTemplateService : IWorkoutTemplateService
                     TargetRepsMin = e.TargetRepsMin,
                     TargetRepsMax = e.TargetRepsMax,
                     TargetIntensity = e.TargetIntensity,
-
+                    RestSeconds = e.RestSeconds,
                     Exercise = new ExerciseResponse
                     {
                         Id = e.Exercise.Id,
@@ -73,6 +73,7 @@ public class WorkoutTemplateService : IWorkoutTemplateService
                 TargetRepsMin = e.TargetRepsMin,
                 TargetRepsMax = e.TargetRepsMax,
                 TargetIntensity = e.TargetIntensity,
+                RestSeconds = e.RestSeconds,
 
                 Exercise = new ExerciseResponse
                 {
