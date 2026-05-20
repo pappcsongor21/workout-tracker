@@ -1,28 +1,39 @@
-import { useEffect, useState } from "react"
+import { useQuery } from "@tanstack/react-query";
 import WorkoutTemplateCard from "./components/WorkoutTemplateCard";
 import type {WorkoutTemplate} from "./types/workoutTemplate";
 
+const fetchWorkoutTemplates = async (): Promise<WorkoutTemplate[]> =>{
+    const res = await fetch('/api/WorkoutTemplates');
+    if(!res.ok){
+      throw new Error('error fetching data')
+    }
+  return res.json();
+}
+
 const App = () => {
 
-  const [workoutTemplates, setWorkoutTemplates] = useState<WorkoutTemplate[]>([]);
+  const {data: workoutTemplates, isLoading, isError} = useQuery({
+    queryKey: ['workoutTemplates'],
+    queryFn: fetchWorkoutTemplates,
+  })
 
-  useEffect(()=>{
-    const fetchWorkoutTemplates = async () =>{
-      try {
-        const res = await fetch('/api/WorkoutTemplates');
-        const data: WorkoutTemplate[] = await res.json();
-        setWorkoutTemplates(data);
-      } catch (error) {
-        console.log('error fetching data', error);
-      }
-    }
+  if(isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen text-2xl font-semibold">
+        Loading workout templates...
+      </div>
+    )
+  }
 
-    fetchWorkoutTemplates();
-  },[]);
+  if(isError) {
+     <div className="flex justify-center items-center h-screen text-2xl text-red-500 font-bold">
+      Cannot fetch workout template data, check the backend
+     </div>
+  }
 
   return (
-    <div>
-      {workoutTemplates.map((workoutTemplate) => (
+    <div className="p-3 flex flex-wrap gap-6 justify-center">
+      {workoutTemplates?.map((workoutTemplate) => (
         <WorkoutTemplateCard 
         key={workoutTemplate.id}
         workoutTemplate={workoutTemplate} />
