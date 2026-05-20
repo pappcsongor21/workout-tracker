@@ -24,3 +24,7 @@ export interface WorkoutTemplate{
 export interface WorkoutTemplateCardProps {
     workoutTemplate: WorkoutTemplate;
 }
+
+export interface TemplateExerciseProps {
+    templateExercise: TemplateExercise;
+}
