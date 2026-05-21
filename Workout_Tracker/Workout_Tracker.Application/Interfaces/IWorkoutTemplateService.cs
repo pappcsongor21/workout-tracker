@@ -7,6 +7,6 @@ public interface IWorkoutTemplateService
     Task<IEnumerable<WorkoutTemplateResponse>> GetWorkoutTemplatesAsync();
     Task<WorkoutTemplateResponse> GetWorkoutTemplateByIdAsync(int id);
     Task<WorkoutTemplateCreatedResponse> CreateWorkoutTemplateAsync(CreateWorkoutTemplateRequest workoutTemplateDto);
-    Task UpdateWorkoutTemplateAsync(UpdateWorkoutTemplateRequest workoutTemplateDto);
+    Task UpdateWorkoutTemplateAsync(int id, UpdateWorkoutTemplateRequest workoutTemplateDto);
     Task DeleteWorkoutTemplateAsync(int id);
 }

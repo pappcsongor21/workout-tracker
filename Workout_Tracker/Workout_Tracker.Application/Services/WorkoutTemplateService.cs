@@ -135,7 +135,7 @@ public class WorkoutTemplateService : IWorkoutTemplateService
         throw new NotImplementedException();
     }
 
-    public Task UpdateWorkoutTemplateAsync(UpdateWorkoutTemplateRequest workoutTemplateDto)
+    public Task UpdateWorkoutTemplateAsync(int id, UpdateWorkoutTemplateRequest workoutTemplateDto)
     {
         throw new NotImplementedException();
     }

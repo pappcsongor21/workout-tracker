@@ -46,7 +46,7 @@ public class WorkoutTemplatesController : ControllerBase
     public async Task<IActionResult> UpdateWorkoutTemplateAsync
         (int id, UpdateWorkoutTemplateRequest workoutTemplateDto)
     {
-        await _service.UpdateWorkoutTemplateAsync(workoutTemplateDto);
+        await _service.UpdateWorkoutTemplateAsync(id, workoutTemplateDto);
         return NoContent();
     }
 
