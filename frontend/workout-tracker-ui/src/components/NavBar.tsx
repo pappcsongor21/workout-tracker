@@ -24,7 +24,7 @@ const NavBar = () => {
 
         <div className="flex gap-4">
           <NavLink
-            to="/workout/start"
+            to="/templates"
             className={linkClass}
           >
             Start workout

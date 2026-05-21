@@ -1,7 +1,7 @@
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import MainPage from "./pages/MainPage";
-import StartWorkoutPage from "./pages/StartWorkoutPage";
+import StartWorkoutPage from "./pages/WorkoutTemplatesPage";
 
 const App = () => {
 
@@ -9,7 +9,7 @@ const App = () => {
     createRoutesFromElements(
       <Route path="/" element={<MainLayout />}>
         <Route index element={<MainPage/>}/>
-        <Route path="/workout/start" element={<StartWorkoutPage/>}/>
+        <Route path="/templates" element={<StartWorkoutPage/>}/>
       </Route>
     )
   );
