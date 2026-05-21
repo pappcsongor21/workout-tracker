@@ -2,9 +2,9 @@
 
 namespace Workout_Tracker.Application.DTOs.WorkoutTemplate;
 
-public class UpdateWorkoutTemplateRequest
+public record UpdateWorkoutTemplateRequest
 {
     public string Name { get; init; } = string.Empty;
     public string ColorHex { get; init; } = "#808080";
-    public List<UpdateTemplateExerciseRequest> Exercises { get; init; } = new();
+    public List<CreateTemplateExerciseRequest> Exercises { get; init; } = new();
 }
