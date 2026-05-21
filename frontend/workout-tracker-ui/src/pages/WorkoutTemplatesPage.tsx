@@ -1,11 +1,11 @@
-import NewWorkoutTemplateCard from "../components/NewWorkoutTemplateCard"
+import CreateWorkoutTemplateCard from "../components/CreateWorkoutTemplateCard"
 import WorkoutTemplateCards from "../components/WorkoutTemplateCards"
 
 const StartWorkoutPage = () => {
   return (
     <>
       <WorkoutTemplateCards />
-      <NewWorkoutTemplateCard />
+      <CreateWorkoutTemplateCard />
     </>
   )
 }
