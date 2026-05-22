@@ -17,7 +17,7 @@ const WorkoutTemplateCard = ({workoutTemplate}:WorkoutTemplateCardProps) => {
               style={{ backgroundColor: workoutTemplate.colorHex }} 
               className="text-center text-white text-4xl font-bold py-5 tracking-wide"
             >
-              <label>{workoutTemplate.name}</label>
+              <p className="cursor-default">{workoutTemplate.name}</p>
             </div>
             
             <div className="flex flex-col w-full text-center">
