@@ -8,14 +8,14 @@ export const createWorkoutTemplateSchema = z.object({
 
     exercises: z.array(
         z.object({
-            exerciseId: z.coerce.number().min(1, 'Choose an exercise!'),
+            exerciseId: z.number().min(1, 'Choose an exercise!'),
 
-            targetSets: z.coerce.number().min(1, 'Minimum 1 set.'),
-            targetRepsMin: z.coerce.number().min(1, 'Minimum 1 repetition.'),
-            targetRepsMax: z.coerce.number().min(1, 'Minimum 1 repetition.'),
+            targetSets: z.number().min(1, 'Minimum 1 set.'),
+            targetRepsMin: z.number().min(1, 'Minimum 1 repetition.'),
+            targetRepsMax: z.number().min(1, 'Minimum 1 repetition.'),
 
             targetIntensity: z.string().trim().optional(),
-            restSeconds: z.coerce.number().min(0, 'Rest time cannot be negative.')
+            restSeconds: z.number().min(0, 'Rest time cannot be negative.')
         }).refine((exercise) => exercise.targetRepsMax >= exercise.targetRepsMin, {
           message: 'Maximum reps cannot be less than minimum reps!',
           path: ['targetRepsMax'],
