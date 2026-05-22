@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-const CreateWorkoutTemplateCard = () => {
+const CreateWorkoutTemplateButton = () => {
   return (
     <div className="flex w-full justify-center py-4">
       <Link
@@ -15,4 +15,4 @@ const CreateWorkoutTemplateCard = () => {
     </div>
   )
 }
-export default CreateWorkoutTemplateCard
+export default CreateWorkoutTemplateButton
