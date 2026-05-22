@@ -2,6 +2,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import MainLayout from "./layouts/MainLayout";
 import MainPage from "./pages/MainPage";
 import StartWorkoutPage from "./pages/WorkoutTemplatesPage";
+import CreateWorkoutTemplatePage from "./pages/CreateWorkoutTemplatePage";
 
 const App = () => {
 
@@ -10,6 +11,7 @@ const App = () => {
       <Route path="/" element={<MainLayout />}>
         <Route index element={<MainPage/>}/>
         <Route path="/templates" element={<StartWorkoutPage/>}/>
+        <Route path='/templates/create' element={<CreateWorkoutTemplatePage/>}/>
       </Route>
     )
   );
