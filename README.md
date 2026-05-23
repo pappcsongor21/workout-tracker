@@ -1,33 +1,54 @@
 # Workout Tracker
 
-This is a .NET 8 based Web API project designed for tracking and managing workouts, exercises, and workout templates. The project follows a layered architecture, separating the data model, business logic, and API endpoints for easier maintenance.
+A comprehensive, full-stack web application designed for tracking and managing workouts, exercises, and custom workout templates. 
 
-## Technology Stack
-- **Framework:** .NET 8
-- **API:** ASP.NET Core Web API (Controllers)
-- **Database:** SQLite, Entity Framework Core ORM
+## 🚀 Features
+
+- **Exercise Management:** Full CRUD operations for exercises, categorizing them by muscle group.
+- **Workout Templates:** Create and manage custom workout templates with specific exercises, targeted sets, reps, intensity, and rest times.
+- **Modern User Interface:** A responsive and interactive frontend built with React, Tailwind CSS, and Vite.
+- **Layered Architecture:** A robust .NET 8 backend following clean architecture principles (API, Application, Model, Persistence layers).
+
+## 🛠 Technology Stack
+
+### Backend
+- **Framework:** .NET 8, ASP.NET Core Web API
+- **Database:** SQLite
+- **ORM:** Entity Framework Core
 - **Testing:** xUnit, Moq
+- **Documentation:** Swagger UI
 
-## Project Structure
+### Frontend
+- **Framework:** React 19, TypeScript
+- **Build Tool:** Vite
+- **Styling:** Tailwind CSS v4
+- **State Management & Data Fetching:** React Query (@tanstack/react-query)
+- **Form Handling & Validation:** React Hook Form, Zod
+- **Routing:** React Router DOM
+
+## 📁 Project Structure
+
 The solution consists of the following main modules:
-- **Workout_Tracker.Api:** The entry point of the application. It receives HTTP requests, contains the Controllers, and the Swagger documentation.
-- **Workout_Tracker.Application:** The business logic layer. This includes DTOs (Data Transfer Objects), custom exceptions (e.g., `NotFoundException`), interfaces, and services (e.g., `ExerciseService`).
-- **Workout_Tracker.Model (Domain):** Contains the core data model entities (`Exercise`, `Workout`, `WorkoutSet`, `WorkoutTemplate`, `TemplateExercise`).
-- **Workout_Tracker.Persistence:** The layer responsible for database connection and migrations (`AppDbContext`).
-- **Workout_Tracker.Test:** Contains the unit tests for the project, focusing on testing the Controllers and mocked services.
 
-## Features
-Currently, the system has the following capabilities:
-- **Exercise Management:** Provides full CRUD (Create, Read, Update, Delete) operations via the `/api/Exercises` endpoint.
-- **Data Model:** The data structure for workout templates (`WorkoutTemplate`) and specific workout logging (`Workout`) is ready, with a relational database schema.
-- **Documentation:** Built-in Swagger UI for easy local testing of the endpoints.
+### Backend Solution (`Workout_Tracker.slnx`)
+- **`Workout_Tracker.Api`**: The entry point. Handles HTTP requests, contains the Controllers, and configures Swagger documentation.
+- **`Workout_Tracker.Application`**: The business logic layer. Includes DTOs, custom exceptions, interfaces, and services.
+- **`Workout_Tracker.Model` (Domain)**: Contains the core data model entities (`Exercise`, `Workout`, `WorkoutSet`, `WorkoutTemplate`, `TemplateExercise`).
+- **`Workout_Tracker.Persistence`**: Handles database connections and EF Core migrations (`AppDbContext`).
+- **`Workout_Tracker.Test`**: Contains unit tests focusing on testing the Controllers using mocked services.
 
-## Running Locally
+### Frontend (`frontend/workout-tracker-ui`)
+- A standalone React application communicating with the backend API.
 
-**Prerequisites:**
+## 🏁 Getting Started
+
+### Prerequisites
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- [Node.js](https://nodejs.org/) (v18 or newer)
+- npm or yarn
 
-**Steps:**
+### Running the Backend Locally
+
 1. Open a terminal in the root folder of the solution.
 2. Restore the NuGet packages:
    ```bash
@@ -41,7 +62,23 @@ Currently, the system has the following capabilities:
    ```bash
    dotnet run --project Workout_Tracker.Api
    ```
-5. Open the Swagger UI in your browser to manually test the endpoints (e.g., `http://localhost:5070/swagger` or the URL indicated by the console).
+5. The API will be available at http://localhost:5070 or https://localhost:7076. You can access the Swagger UI by navigating to /swagger.
+
+### Running the Frontend Locally
+1. Open a new terminal and navigate to the frontend directory:
+```bash
+cd frontend/workout-tracker-ui
+```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open your browser and navigate to the URL provided by Vite (usually http://localhost:5173). Note: The frontend is configured to proxy API requests to https://localhost:7076
+
 
 ## Running Tests
 To run the existing unit tests, execute the following command in the root of the project:
